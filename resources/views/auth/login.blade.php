@@ -4,6 +4,7 @@
         .captcha {
             position: relative;
         }
+
         .captcha img {
             width: 100%;
             height: 110px;
@@ -25,16 +26,17 @@
                 <div class="card-content">
                     <span class="card-title">Login</span>
                     <br>
-                    <form class="">
+                    <form id="form-login">
                         <div class="row">
                             <div class="input-field outlined col s12">
-                                <input id="text-nik" type="number" placeholder=" ">
-                                <label for="text-nik">NIK</label>
+                                <input id="input-email" name="email" type="email" placeholder=" " class="validate">
+                                <label for="input-email">Email</label>
                             </div>
                             <br>
                             <div class="input-field outlined col s12">
-                                <input id="text-password" type="password" placeholder=" ">
-                                <label for="text-password">Password</label>
+                                <i class="material-icons suffix">visibility_off</i>
+                                <input id="input-password" name="password" type="password" placeholder=" " class="validate">
+                                <label for="input-password">Password</label>
                             </div>
                             <br>
                             <div class="row col s12">
@@ -47,8 +49,8 @@
                             </div>
                             <br>
                             <div class="input-field outlined col s12">
-                                <input id="text-captcha" type="text" placeholder=" ">
-                                <label for="text-captcha">Captcha</label>
+                                <input id="input-captcha" name="captcha" type="text" placeholder=" " class="validate">
+                                <label for="input-captcha">Captcha</label>
                             </div>
                     </form>
                 </div>
@@ -78,13 +80,32 @@
                 type: 'GET',
                 url: "{{ route('auth.recaptcha') }}",
                 success: function(data) {
-                    $(".captcha").html(data.captcha);
+                    $(".captcha").html(`${data.captcha}<a onclick="reCaptcha()" class="reload btn-floating waves-effect waves-light small">
+                                        <i class="material-icons right">refresh</i>
+                                    </a>`);
                     $("#captcha").val("");
                 }
             });
         }
-        function login(){
-            location.href = "{{ route('dashboard') }}";
+
+        function login() {
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('auth.login') }}",
+                data: $('#form-login').serialize(),
+                success: function() {
+                    M.toast({
+                        text: 'Success!'
+                    })
+                    location.reload()
+                },
+                error: function() {
+                    M.toast({
+                        text: 'Error!'
+                    })
+                    reCaptcha()
+                }
+            })
         }
     </script>
 @endsection
