@@ -34,7 +34,8 @@
                             </div>
                             <br>
                             <div class="input-field outlined col s12">
-                                <i class="material-icons suffix">visibility_off</i>
+                                <i onclick="toggleVisibility(this)"
+                                    class="material-icons suffix waves-effect">visibility_off</i>
                                 <input id="input-password" name="password" type="password" placeholder=" " class="validate">
                                 <label for="input-password">Password</label>
                             </div>
@@ -49,7 +50,8 @@
                             </div>
                             <br>
                             <div class="input-field outlined col s12">
-                                <input id="input-captcha" name="captcha" type="text" placeholder=" " class="validate">
+                                <input id="input-captcha" name="captcha" type="text" onkeyup="enterToLogin(event)"
+                                    placeholder=" " class="validate">
                                 <label for="input-captcha">Captcha</label>
                             </div>
                     </form>
@@ -75,6 +77,25 @@
 @endsection
 @section('extra-js')
     <script>
+        function enterToLogin(evt) {
+            if (evt.key === 'Enter' || evt.keyCode === 13) {
+                login()
+            }
+        }
+
+        function toggleVisibility(el) {
+            let password = $('#input-password')[0]
+            let element = $(el)
+            let status = element.text()
+            if (status == 'visibility_off') {
+                element.text('visibility')
+                password.type = 'text'
+                return
+            }
+            element.text('visibility_off')
+            password.type = 'password'
+        }
+
         function reCaptcha() {
             $.ajax({
                 type: 'GET',
@@ -99,7 +120,14 @@
                     })
                     location.reload()
                 },
-                error: function() {
+                error: function(req) {
+                    loading(false)
+                    if (typeof req.responseJSON.payload.captcha != 'undefined') {
+                        M.toast({
+                            text: 'Wrong Captcha'
+                        })
+                        return
+                    }
                     M.toast({
                         text: 'Error!'
                     })
