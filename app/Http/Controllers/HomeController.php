@@ -8,7 +8,7 @@ class HomeController extends PublicController
 {
     public function index()
     {
-        $this->overrideTitle('Buana Cahaya Mentari');
+        $this->overrideTitle('Materialize Framework');
         return $this->render('home.index');
     }
 
