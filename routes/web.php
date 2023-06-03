@@ -43,7 +43,6 @@ Route::group([
     'middleware' => 'auth:web',
     'prefix' => 'dashboard'
 ], function ($router) {
-
     $router->get('/', [StatsController::class, 'index'])->name('dashboard');
     $router->get('/stats', [StatsController::class, 'index'])->name('dashboard.stats');
 });
