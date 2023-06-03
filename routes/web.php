@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StatsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,41 +16,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
 Route::group([
     'prefix' => '/'
 ], function ($router) {
-    $router->get('/', [HomeController::class, 'index'])->name('public.index');
+    $router->get('/', [HomeController::class, 'index'])->name('public.home');
     $router->get('home', [HomeController::class, 'index']);
     $router->get('about', [HomeController::class, 'about'])->name('public.about');
-    // $router->get('recaptcha', [AuthController::class, 'reCaptcha'])->name('auth.recaptcha');
-    // $router->post('login', [AuthController::class, 'login'])->name('auth.login');
-    // $router->post('logout', [AuthController::class, 'logout'])->name('auth.logout');
-    // $router->post('refresh', [AuthController::class, 'refresh'])->name('auth.refresh');
-    // $router->post('me', [AuthController::class, 'me'])->name('auth.me');
 });
 
 Route::group([
-    'middleware' => 'web',
     'prefix' => 'auth'
 ], function ($router) {
     $router->get('login', [AuthController::class, 'index'])->name('auth.index');
     $router->get('recaptcha', [AuthController::class, 'reCaptcha'])->name('auth.recaptcha');
     $router->post('login', [AuthController::class, 'login'])->name('auth.login');
-    $router->post('logout', [AuthController::class, 'logout'])->name('auth.logout');
-    $router->post('refresh', [AuthController::class, 'refresh'])->name('auth.refresh');
-    $router->post('me', [AuthController::class, 'me'])->name('auth.me');
+    $router->group([
+        'middleware' => 'auth:web'
+    ], function ($router) {
+        $router->get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+        $router->get('refresh', [AuthController::class, 'refresh'])->name('auth.refresh');
+        $router->get('me', [AuthController::class, 'me'])->name('auth.me');
+    });
 });
 
 Route::group([
-    'middleware' => 'web',
+    'middleware' => 'auth:web',
     'prefix' => 'dashboard'
 ], function ($router) {
-    $router->post('login', [AuthController::class, 'login']);
 
-    $router->get('/', function () {
-        return redirect(route('scan-index'));
-    })->name('dashboard');
+    $router->get('/', [StatsController::class, 'index'])->name('dashboard');
+    $router->get('/stats', [StatsController::class, 'index'])->name('dashboard.stats');
 });
