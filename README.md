@@ -12,6 +12,8 @@
     diolan12/php-lipsum
     mews/captcha
     php-open-source-saver/jwt-auth
+    ramsey/uuid
+    webpatser/laravel-uuid
 
 ## About Laravel
 
