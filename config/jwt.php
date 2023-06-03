@@ -158,7 +158,7 @@ return [
     */
 
     'persistent_claims' => [
-        // 'foo',
+        'uuid',
         // 'bar',
     ],
 
