@@ -68,19 +68,11 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function(xhr) {
-                loading(true)
-            },
-            afterSend: function(xhr) {
-                loading(false)
-            },
-            done: function(xhr) {
-                loading(false)
             }
         });
-
-        document.addEventListener("DOMContentLoaded", function() {
+        $.ajaxSettings.beforeSend = ()=>{loading(true)}
+        $.ajaxSettings.complete = ()=>{loading(false)}
+        $(document).ready(function() {
             loading(false)
         });
     </script>
