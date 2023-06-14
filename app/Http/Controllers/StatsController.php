@@ -8,13 +8,8 @@ class StatsController extends DashboardController
 {
     public function index()
     {
-        $this->overrideTitle('Materialize Framework');
+        $this->overrideTitle('Chart.js');
         return $this->render('stats.index');
     }
 
-    public function about()
-    {
-        $this->setSubtitle('About');
-        return $this->render('about.index');
-    }
 }
