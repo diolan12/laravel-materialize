@@ -62,13 +62,18 @@
                     <a href="#email"><span class="white-text email">jdoe@example.com</span></a>
                 </div>
             </li>
-            <li class="{{ (Route::is('dashboard.stats') || Route::is('dashboard')) ? 'active' : '' }}"><a href="{{ route('dashboard.stats') }}"><i
-                        class="material-icons">dashboard</i>Stats</a></li>
-            <li><a href="#!">Second Link</a></li>
+            <li><a class="subheader">Libraries</a></li>
+
+            <li class="{{ Route::is('dashboard.stats') || Route::is('dashboard') ? 'active' : '' }}"><a
+                    href="{{ route('dashboard.stats') }}"><i class="material-icons">insights</i>Chart.js</a></li>
+            <li class="{{ Route::is('dashboard.table') ? 'active' : '' }}"><a href="{{ route('dashboard.table') }}"><i
+                        class="material-icons">table_chart</i>Tabulator.js</a></li>
+            <li class="{{ Route::is('dashboard.map') ? 'active' : '' }}"><a href="{{ route('dashboard.map') }}"><i
+                        class="material-icons">map</i>Leaflet.js</a></li>
             <li>
                 <div class="divider"></div>
             </li>
-            <li><a class="subheader">Subheader</a></li>
+            <li><a class="subheader">Components</a></li>
             <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
         </ul>
     </header>
@@ -80,7 +85,7 @@
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
-                © {{ \Carbon\Carbon::now()->year }} Copyright {{ env('APP_NAME', 'Laravel') }}
+                © {{ \Carbon\Carbon::now()->year }} Copyright {{ $app->name }}
                 <a class="right" href="{{ route('public.home') }}">Home</a>
             </div>
         </div>
