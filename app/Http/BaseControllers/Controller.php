@@ -12,8 +12,18 @@ class Controller extends BaseController
 
     protected $viewBase = '';
 
+    public static function app()
+    {
+        return [
+            'name' => env('APP_NAME', 'Laravel Materialize'),
+            'version' => '1.0.0'
+        ];
+    }
+
     private $title = null;
     private $subtitle = null;
+
+    private $data = [];
 
     protected function overrideTitle(string $title)
     {
@@ -30,15 +40,31 @@ class Controller extends BaseController
         $this->subtitle = null;
     }
 
-    protected function render(string $view)
+    protected function setData($key, $data)
     {
+        $this->data[$key] = $data;
+    }
+    protected function unsetData($key)
+    {
+        unset($this->data[$key]);
+    }
+
+    private function wrap()
+    {
+        $app = (object) self::app();
+
         $head = (object) [
-            'title' => $this->title??env('APP_NAME', 'Laravel'),
+            'title' => $this->title ?? env('APP_NAME', 'Laravel'),
             'subtitle' => $this->subtitle
         ];
-        $data = [
+        return [
+            'app' => $app,
             'head' => $head
         ];
-        return view($this->viewBase . '.' . $view, $data);
+    }
+
+    protected function render(string $view)
+    {
+        return view($this->viewBase . '.' . $view, $this->wrap());
     }
 }
