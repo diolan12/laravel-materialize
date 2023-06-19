@@ -64,6 +64,10 @@
             progressGeneral.classList.add('hide')
         }
 
+        function toast(text){
+            M.toast({text: text, classes: 'rounded'});
+        }
+
         M.AutoInit();
         $.ajaxSetup({
             headers: {
