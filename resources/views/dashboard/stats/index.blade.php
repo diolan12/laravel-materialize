@@ -36,6 +36,11 @@
                 <span class="white-text">{{ \Diolan12\LoremIpsum::instance()->sentences(7) }}</span>
             </div>
         </div>
+        <div class="col s12">
+            <div class="card-panel bg-primary-color">
+                <span class="white-text">{{ \Diolan12\LoremIpsum::instance()->paragraphs() }}</span>
+            </div>
+        </div>
     </div>
 @endsection
 @section('extra-js')
