@@ -19,7 +19,7 @@
 
         /* sidenav active */
         .sidenav li.active {
-            background-color: var(--focus-color) !important;
+            background-color: rgba(var(--primary-color-numeric), 0.4) !important;
         }
 
         /* navbar droppable */
@@ -36,6 +36,20 @@
         .brand-logo img {
             height: 32px;
         }
+
+        /* patch for collapsible nav */
+        .sidenav.sidenav-fixed .collapsible-header {
+            padding: 0 32px;
+        }
+        div.collapsible-body ul {
+            list-style-type: none;
+        }
+
+        /* content */
+        
+        .row .col {
+            margin: 6px;
+        }
     </style>
 @endsection
 @section('main')
@@ -45,6 +59,14 @@
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="{{ route('dashboard') }}" class="brand-logo">{{ env('APP_NAME', 'Laravel') }}</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><div class="switch">
+                        <label>
+                          Light
+                          <input id="theme-switch" onchange="themeSwitch(this)" type="checkbox">
+                          <span class="lever"></span>
+                          Dark
+                        </label>
+                      </div></li>
                     <li><a href="{{ route('public.home') }}">Public</a></li>
                     <li><a href="{{ route('auth.me') }}">Profile</a></li>
                     <li><a href="{{ route('auth.logout') }}">Logout</a></li>
@@ -52,6 +74,7 @@
             </div>
         </nav>
         <ul id="slide-out" class="sidenav sidenav-fixed">
+
             <li>
                 <div class="user-view">
                     <div class="background">
@@ -66,8 +89,27 @@
 
             <li class="{{ Route::is('dashboard.stats') || Route::is('dashboard') ? 'active' : '' }}"><a
                     href="{{ route('dashboard.stats') }}"><i class="material-icons">insights</i>Chart.js</a></li>
-            <li class="{{ Route::is('dashboard.table') ? 'active' : '' }}"><a href="{{ route('dashboard.table') }}"><i
-                        class="material-icons">table_chart</i>Tabulator.js</a></li>
+
+            <li
+                class="no-padding {{ Route::is('dashboard.tabulator') ? 'active' : '' }} {{ Route::is('dashboard.datatable-php') ? 'active' : '' }} {{ Route::is('dashboard.datatable-js') ? 'active' : '' }}">
+                <ul class="collapsible collapsible-accordion" style="list-style-type: none;">
+                    <li
+                        class="{{ Route::is('dashboard.tabulator') ? 'active' : '' }} {{ Route::is('dashboard.datatable-php') ? 'active' : '' }} {{ Route::is('dashboard.datatable-js') ? 'active' : '' }}">
+                        <a class="collapsible-header">Tables<i class="material-icons">table_chart</i></a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li class="{{ Route::is('dashboard.tabulator') ? 'active' : '' }}"><a
+                                        href="{{ route('dashboard.tabulator') }}">Tabulator.js</a></li>
+                                        <li class="{{ Route::is('dashboard.datatable-php') ? 'active' : '' }}"><a
+                                                href="{{ route('dashboard.datatable-php') }}">DataTables PHP</a></li>
+                                                <li class="{{ Route::is('dashboard.datatable-js') ? 'active' : '' }}"><a
+                                                        href="{{ route('dashboard.datatable-js') }}">DataTables JS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
             <li class="{{ Route::is('dashboard.map') ? 'active' : '' }}"><a href="{{ route('dashboard.map') }}"><i
                         class="material-icons">map</i>Leaflet.js</a></li>
             <li>
@@ -90,4 +132,26 @@
             </div>
         </div>
     </footer>
+@endsection
+@section('extra-base-js')
+    <script>
+        (()=>{
+            let themeSwitch = document.getElementById('theme-switch');
+            let theme = window.localStorage.getItem('theme', 'light')
+            if (theme == 'dark') {
+                themeSwitch.checked = true;
+            } else {
+                themeSwitch.checked = false;
+            }
+        })();
+        function themeSwitch(ele){
+            console.log(ele.checked);
+            if(ele.checked){
+                window.localStorage.setItem('theme', 'dark')
+            } else {
+                window.localStorage.setItem('theme', 'light')
+            }
+            location.reload()
+        }
+    </script>
 @endsection
