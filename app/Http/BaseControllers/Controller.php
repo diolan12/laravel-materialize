@@ -59,7 +59,8 @@ class Controller extends BaseController
         ];
         return [
             'app' => $app,
-            'head' => $head
+            'head' => $head,
+            'data' => (object) $this->data
         ];
     }
 

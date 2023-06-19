@@ -1,7 +1,6 @@
 @extends('base.dashboard')
 @section('extra-css')
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/sp-2.1.2/sl-1.6.2/datatables.min.css" rel="stylesheet">
-
     <style>
         /* DataTables searchpanes extension */
         div.dtsp-panesContainer div.dataTables_wrapper div.dataTables_scrollBody {
@@ -78,14 +77,19 @@
                 <table id="example-table" class="display responsive-table striped highlight">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Favourite Color</th>
-                            <th>Date Of Birth</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach ($data->posts as $post):?>
+                        <tr>
+                            <td><?= $post->author->name ?></td>
+                            <td><?= $post->title ?></td>
+                            <td><?= $post->status ?></td>
+                        </tr>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
             </div>
@@ -290,46 +294,8 @@
         });
     </script>
     <script>
-        //define some sample data
-        var tabledata = [{
-                id: 1,
-                name: "Oli Bob",
-                age: "12",
-                col: "red",
-                dob: ""
-            },
-            {
-                id: 2,
-                name: "Mary May",
-                age: "1",
-                col: "blue",
-                dob: "14/05/1982"
-            },
-            {
-                id: 3,
-                name: "Christine Lobowski",
-                age: "42",
-                col: "green",
-                dob: "22/05/1982"
-            },
-            {
-                id: 4,
-                name: "Brendon Philips",
-                age: "125",
-                col: "orange",
-                dob: "01/08/1980"
-            },
-            {
-                id: 5,
-                name: "Margret Marmajuke",
-                age: "16",
-                col: "yellow",
-                dob: "31/01/1999"
-            },
-        ];
         let table = new DataTable('#example-table', {
-            data: tabledata,
-            // responsive: true,
+            responsive: true,
             dom: 'Plfrtip',
             // searching: true,
             serverSide: false,
@@ -338,28 +304,13 @@
             // stateSave: true,
             // scrollX: true,
             // scrollY: "500px",
-            columns: [{
-                    data: "id"
-                },
-                {
-                    data: "name"
-                },
-                {
-                    data: "age"
-                },
-                {
-                    data: "col"
-                },
-                {
-                    data: "dob"
-                }
-            ],
             scrollCollapse: true,
             fixedColumns: {
                 left: 1
             },
+            select: true,
             searchPanes: {
-                columns: [1, 2, 3, 4],
+                columns: [2],
                 viewTotal: true
             },
             columnDefs: [{
@@ -367,9 +318,9 @@
                     show: true,
                     viewTotal: true
                 },
-                targets: [1, 2, 3, 4],
+                targets: [2],
             }],
-            // paging: true,
+            paging: true,
             pageLength: 10,
             lengthMenu: [
                 [10, 20, 50, -1],
