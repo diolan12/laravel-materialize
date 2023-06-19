@@ -44,4 +44,18 @@
 
         --md_sys_color_on-surface: 230, 225, 229;
     }
+
+    .primary-color {
+        color: var(--primary-color) !important;
+    }
+    .bg-primary-color {
+        background-color: var(--primary-color) !important;
+    }
+
+    .secondary-color {
+        color: var(--secondary-color) !important;
+    }
+    .bg-secondary-color {
+        background-color: var(--secondary-color) !important;
+    }
 </style>
