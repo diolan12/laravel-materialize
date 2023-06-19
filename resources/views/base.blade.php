@@ -34,6 +34,10 @@
         .progress.general {
             margin: 0 !important;
         }
+
+        a.brand-logo {
+            margin-left: 16px;
+        }
     </style>
 
     @include('base.component.css')
