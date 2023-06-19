@@ -47,6 +47,10 @@ Route::group([
 ], function ($router) {
     $router->get('/', [StatsController::class, 'index'])->name('dashboard');
     $router->get('/stats', [StatsController::class, 'index'])->name('dashboard.stats');
-    $router->get('/table', [TableController::class, 'index'])->name('dashboard.table');
+    $router->group(['prefix' => '/table'], function($router){
+        $router->get('/tabulator', [TableController::class, 'tabulator'])->name('dashboard.tabulator');
+        $router->get('/datatable-php', [TableController::class, 'datatablePHP'])->name('dashboard.datatable-php');
+        $router->get('/datatable-js', [TableController::class, 'datatableJS'])->name('dashboard.datatable-js');
+    });
     $router->get('/map', [MapController::class, 'index'])->name('dashboard.map');
 });
