@@ -1,125 +1,51 @@
 @extends('base.public')
 
 @section('extra-css')
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        :root {
-            --headerOpacity: 1;
-            --headerScale: 1;
+        #bgVideo {
+            z-index: -1;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
         }
 
-        @mixin coverer {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .video-header {
-            position: absolute;
+        /* Add some content at the bottom of the video/page */
+        .content {
             text-align: center;
-            width: 100vw;
-            height: 100vh;
-
-            &,
-            video,
-            .viewport-header {
-                @@include coverer;
-            }
-
-            video {
-                background: brown;
-                object-fit: cover;
-            }
-
-            .viewport-header {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 1;
-                opacity: var(--headerOpacity);
-                transform: scale(var(--headerScale));
-            }
-        }
-
-        html,
-        body {
-            height: 100vh;
-            overflow-x: hidden;
-        }
-
-        html {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: 150%;
-            line-height: 1.4;
-        }
-
-        body {
-            margin: 0;
-        }
-
-
-
-        h1 {
-            font-family: 'Syncopate', sans-serif;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 3vw;
-            line-height: 1.2;
-            font-size: 3vw;
-            text-align: center;
-
-            span {
-                display: block;
-                font-size: 10vw;
-                letter-spacing: -1.3vw;
-            }
-        }
-
-        main {
-            background: white;
-            position: relative;
-            padding: 1rem;
-            margin-top: 100vh;
-
-            &::before {
-                content: "";
-                @@include coverer;
-                top: -100vh;
-            }
-
-            p {
-                max-width: 600px;
-                margin: 1rem auto;
-            }
+            position: fixed;
+            top: 40%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            width: 100%;
+            padding: 20px;
         }
     </style>
 @endsection
 
-@section('extra-header')
-    <video src="http://localhost:8000/assets/videos/bg.mp4" autoplay loop playsinline muted></video>
-    <div class="viewport-header">
-        <h1>
-            Explore
-            <span>Montana</span>
-        </h1>
+@section('content')
+    <!-- The video -->
+    <video autoplay muted loop id="bgVideo">
+        <source src="http://localhost:8000/assets/videos/bg.mp4" type="video/mp4">
+    </video>
+    <!-- Optional: some overlay text to describe the video -->
+    <div class="content" data-aos="fade-up">
+        <h1>{{ env('APP_NAME', 'Laravel') }}</h1>
+        <?= \Diolan12\LoremIpsum::instance()
+                ->wrap()
+                ->sentences(4) ?>
+        <!-- Use a button to pause/play the video with JavaScript -->
+        <button class="btn waves-light">Explore</button>
+        <button class="btn secondary-color">Book Now</button>
     </div>
 @endsection
 
-@section('content')
-    [[[https://codepen.io/chriscoyier/pen/VbqzER]]]
-    <div id="circle"></div>
-@endsection
-
 @section('extra-js')
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        var viewportHeader = document.querySelector(".viewport-header");
-
-        document.body.addEventListener("scroll", function(event) {
-            var opacity = (document.body.offsetHeight - document.body.scrollTop) / document.body.offsetHeight;
-            var scale = (document.body.offsetHeight - document.body.scrollTop) / document.body.offsetHeight;
-            document.documentElement.style.setProperty('--headerOpacity', opacity);
-            document.documentElement.style.setProperty('--headerScale', scale);
-        });
+        AOS.init();
     </script>
 @endsection

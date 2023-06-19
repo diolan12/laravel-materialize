@@ -27,18 +27,18 @@
             </div>
         </div>
         <div class="col s6">
-            <div class="card-panel teal">
-                <span class="white-text">{{ \Diolan12\LoremIpsum::instance()->sentences(7) }}</span>
+            <div class="card-panel secondary-color">
+                <span>{{ \Diolan12\LoremIpsum::instance()->sentences(7) }}</span>
             </div>
         </div>
         <div class="col s6">
             <div class="card-panel">
-                <span class="white-text">{{ \Diolan12\LoremIpsum::instance()->sentences(7) }}</span>
+                <span>{{ \Diolan12\LoremIpsum::instance()->sentences(7) }}</span>
             </div>
         </div>
         <div class="col s12">
-            <div class="card-panel bg-primary-color">
-                <span class="white-text">{{ \Diolan12\LoremIpsum::instance()->paragraphs() }}</span>
+            <div class="card-panel primary-color">
+                <span>{{ \Diolan12\LoremIpsum::instance()->paragraphs() }}</span>
             </div>
         </div>
     </div>

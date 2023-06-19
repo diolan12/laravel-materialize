@@ -38,24 +38,26 @@
         --primary-color-raised-hover-solid: #C2ACEA;
         --primary-color-raised-focus-solid: #DBC5FF;
 
-        --secondary-color: #CDDC39;
-        --secondary-color-hover-solid: #DCEB48;
-        --secondary-color-focus-solid: #F5FF61;
+        --secondary-color: #39c9dc;
+        --secondary-color-hover-solid: #48aaeb;
+        --secondary-color-focus-solid: #61e7ff;
 
         --md_sys_color_on-surface: 230, 225, 229;
     }
 
     .primary-color {
-        color: var(--primary-color) !important;
-    }
-    .bg-primary-color {
         background-color: var(--primary-color) !important;
+        color: var(--font-on-primary-color-main) !important;
+    }
+    .text-primary-color {
+        color: var(--primary-color) !important;
     }
 
     .secondary-color {
-        color: var(--secondary-color) !important;
-    }
-    .bg-secondary-color {
         background-color: var(--secondary-color) !important;
+        color: var(--font-on-primary-color-main) !important;
+    }
+    .text-secondary-color {
+        color: var(--secondary-color) !important;
     }
 </style>
