@@ -115,8 +115,16 @@
             <li>
                 <div class="divider"></div>
             </li>
-            <li><a class="subheader">Components</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            <li><a class="subheader">Links</a></li>
+            <li><a class="waves-effect" href="https://materializeweb.com/" target="_blank"><i class="material-icons right">open_in_new</i>Materialize CSS</a></li>
+            <li><a class="waves-effect" href="https://www.chartjs.org/" target="_blank"><i class="material-icons right">open_in_new</i>Chart.js</a></li>
+            <li><a class="waves-effect" href="https://tabulator.info/" target="_blank"><i class="material-icons right">open_in_new</i>Tabulator</a></li>
+            <li><a class="waves-effect" href="https://datatables.net/" target="_blank"><i class="material-icons right">open_in_new</i>DataTables</a></li>
+            <li><a class="waves-effect" href="https://leafletjs.com/" target="_blank"><i class="material-icons right">open_in_new</i>Leaflet.js</a></li>
+            <li><a class="waves-effect" href="https://rishabhp.github.io/bideo.js/" target="_blank"><i class="material-icons right">open_in_new</i>Bideo.js</a></li>
+            <li><a class="waves-effect" href="https://michalsnik.github.io/aos/" target="_blank"><i class="material-icons right">open_in_new</i>AOS</a></li>
+            <li><a class="waves-effect" href="https://momentjs.com/" target="_blank"><i class="material-icons right">open_in_new</i>Moment.js</a></li>
+            <li><a class="waves-effect" href="http://parsleyjs.org/" target="_blank"><i class="material-icons right">open_in_new</i>Parsley.js</a></li>
         </ul>
     </header>
     <main>
