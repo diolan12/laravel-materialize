@@ -3,10 +3,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-        .row .col {
-            margin: 6px;
-        }
-
         #map {
             height: 630px;
         }
@@ -15,8 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col s12">
-            <div class="card-panel">
-                <div id="map"></div>
+            <div id="map" class="card-panel">
             </div>
         </div>
     </div>
