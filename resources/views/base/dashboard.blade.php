@@ -113,15 +113,19 @@
                 </ul>
             </li>
 
-            <li class="{{ Route::is('dashboard.map') ? 'active' : '' }}"><a href="{{ route('dashboard.map') }}"><i
-                        class="material-icons">map</i>Leaflet.js</a></li>
+            <li class="{{ Route::is('dashboard.map') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.map') }}"><i class="material-icons">map</i>Leaflet.js</a>
+            </li>
+            <li class="{{ Route::is('dashboard.stepper') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.stepper') }}"><i class="material-icons">description</i>Stepper.js</a>
+            </li>
             <li>
                 <div class="divider"></div>
             </li>
             <li class="{{ Route::is('dashboard.account') ? 'active' : '' }}"><a href="{{ route('dashboard.account') }}"><i
                         class="material-icons">person</i>Account</a></li>
-            <li class="{{ (Route::is('dashboard.post') || Route::is('dashboard.post-at')) ? 'active' : '' }}"><a href="{{ route('dashboard.post') }}"><i
-                        class="material-icons">article</i>Post</a></li>
+            <li class="{{ Route::is('dashboard.post') || Route::is('dashboard.post-at') ? 'active' : '' }}"><a
+                    href="{{ route('dashboard.post') }}"><i class="material-icons">article</i>Post</a></li>
 
             <li>
                 <div class="divider"></div>
