@@ -147,6 +147,8 @@
                         class="material-icons right">open_in_new</i>Parsley.js</a></li>
             <li><a class="waves-effect" href="https://sortablejs.github.io/Sortable/" target="_blank"><i
                         class="material-icons right">open_in_new</i>Sortable.js</a></li>
+            <li><a class="waves-effect" href="https://kinark.github.io/Materialize-stepper/" target="_blank"><i
+                        class="material-icons right">open_in_new</i>Materialize Stepper</a></li>
         </ul>
     </header>
     <main>
