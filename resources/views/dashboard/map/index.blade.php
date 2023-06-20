@@ -4,16 +4,12 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
         #map {
-            height: 630px;
+            height: 680px;
         }
     </style>
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col s12">
-            <div id="map" class="card-panel">
-            </div>
-        </div>
+    <div id="map">
     </div>
 @endsection
 @section('extra-js')

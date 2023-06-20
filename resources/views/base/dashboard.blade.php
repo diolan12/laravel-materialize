@@ -156,9 +156,7 @@
         </ul>
     </header>
     <main>
-        <div>
-            @yield('content')
-        </div>
+        @yield('content')
     </main>
     <footer class="page-footer">
         <div class="footer-copyright">
