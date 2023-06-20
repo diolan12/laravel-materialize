@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\BaseControllers\DashboardController;
 use App\Models\Post;
-use App\Models\Embed;
-use App\Models\Paragraph;
-use App\Models\Image;
 use Illuminate\Http\Request;
 
 class PostController extends DashboardController
