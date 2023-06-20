@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StatsController;
+use App\Http\Controllers\StepperController;
 use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,10 @@ Route::group([
     });
     $router->get('/map', [MapController::class, 'index'])->name('dashboard.map');
 
+    $router->group(['prefix' => '/stepper'], function($router){
+        $router->get('/', [StepperController::class, 'index'])->name('dashboard.stepper');
+        $router->post('/check-email', [StepperController::class, 'checkEmail'])->name('dashboard.stepper-email');
+    });
     
     $router->group(['prefix' => '/account'], function($router){
         $router->get('/', [AccountController::class, 'index'])->name('dashboard.account');
