@@ -12,12 +12,12 @@ class PostController extends DashboardController
     {
         $this->setSubtitle('Accounts');
         if (auth()->user()->role == 'user') {
-            $data = Post::with('author')->where('author_id', auth()->user()->id)->get();
+            $data = Post::with(['author', 'sections.sectionable'])->where('author_id', auth()->user()->id)->get();
 
             $this->setData('posts', $data);
             return $this->render('post.index-user');
         }
-        $data = Post::with('author')->get();
+        $data = Post::with(['author', 'sections.sectionable'])->get();
 
         $this->setData('posts', $data);
         return $this->render('post.index');

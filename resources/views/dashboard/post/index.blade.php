@@ -77,16 +77,20 @@
                 <table id="example-table" class="display responsive-table striped highlight">
                     <thead>
                         <tr>
+                            <th class="hide">UUID</th>
                             <th>Author</th>
                             <th>Title</th>
+                            <th>Section</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($data->posts as $post):?>
                         <tr>
+                            <td class="hide"><?= $post->uuid ?></td>
                             <td><?= $post->author->name ?></td>
                             <td><?= $post->title ?></td>
+                            <td><?= count($post->sections) ?></td>
                             <td><?= $post->status ?></td>
                         </tr>
                         <?php endforeach;?>
@@ -310,7 +314,7 @@
             },
             select: true,
             searchPanes: {
-                columns: [0, 2],
+                columns: [1, 4],
                 viewTotal: true
             },
             columnDefs: [{
@@ -318,7 +322,7 @@
                     show: true,
                     viewTotal: true
                 },
-                targets: [0, 2],
+                targets: [1, 4],
             }],
             paging: true,
             pageLength: 10,
@@ -326,6 +330,11 @@
                 [10, 20, 50, -1],
                 [10, 20, 50, "All"]
             ],
+        });
+        table.on('click', 'tr', function(evt) {
+            let uuid = table.row(this).data()[0];
+            window.open(`{{ route('dashboard.post') }}/${uuid}`, '_self');
+            console.log(table.row(this).data());
         });
     </script>
 @endsection

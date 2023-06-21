@@ -62,7 +62,7 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
                         <div class="switch">
-                            <label>
+                            <label class="primary-color">
                                 Light
                                 <input id="theme-switch" onchange="themeSwitch(this)" type="checkbox">
                                 <span class="lever"></span>

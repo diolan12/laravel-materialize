@@ -1,6 +1,9 @@
 @extends('base.dashboard')
 @section('extra-css')
     <style>
+        .drag-handle {
+            cursor: move;
+        }
     </style>
 @endsection
 @section('content')
